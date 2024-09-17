@@ -2,53 +2,60 @@
 #include <math.h>
 
 int main()
+
 {
-    char exitChar;
+    char exitChar; //символ для перевірки, чи хоче користувач вийти
     printf("This program calculates perimeter, area, height, median and bisector of the sides of a triangle");
     do
-        
+
     {
-        double a=0, b=0, c=0;
-        int n=0;
-        int valid_input = 0;
-        while (!valid_input)
+        double a=0, b=0, c=0; //довжини сторін трикутника
+        int n=0; //кількість знаків після коми для виведення результатів
+        int valid_input = 0; //змінна для перевірки коректності введених значень
+        while (!valid_input) //цикл, що буде повторюватися, доки умова !valid_input буде істинною (тобто доки valid_input дорівнює 0)
 
         {
-            printf("\nEnter the value of the side a (from 0,001 to 1000): ");
+            printf("\nEnter the value of the side a (from 0,001 to 1000):");
             scanf("%lf", &a);
             if (a < 0.001 || a > 1000)
+
             {
                 printf("Invalid input, try again\n");
+                fflush(stdin);
                 continue;
             }
 
-            printf("Enter the value of the side b (from 0,001 to 1000): ");
+            printf("Enter the value of the side b (from 0,001 to 1000):");
             scanf("%lf", &b);
             if (b < 0.001 || b > 1000)
             {
                 printf("Invalid input, try again\n");
+                fflush(stdin);
                 continue;
             }
 
-            printf("Enter the value of the side c (from 0,001 to 1000): ");
+            printf("Enter the value of the side c (from 0,001 to 1000):");
             scanf("%lf", &c);
             if (c < 0.001 || c > 1000)
             {
                 printf("Invalid input, try again\n");
+                fflush(stdin);
                 continue;
             }
 
             if (((a+b)<c) || ((a+c)<b) || ((b+c)<a))
             {
                 printf("Invalid input, there is no such triangle, try again\n");
+                fflush(stdin);
                 continue;
             }
 
-            printf("Enter the number of decimal places from 1 to 12: ");
+            printf("Enter the number of decimal places from 1 to 12:");
             scanf("%d", &n);
             if (n < 1 || n > 12)
             {
                 printf("Invalid number of decimal places, try again\n");
+                fflush(stdin);
                 continue;
             }
             valid_input ++;
@@ -62,30 +69,27 @@ int main()
         printf("\nArea: %.*lf", n, area);
 
         double Ha=(2*area/a);
-        printf("\nHeight(a): %.*lf", n, Ha);
-
         double Hb=(2*area/b);
-        printf("\nHeight(b): %.*lf", n, Hb);
-
         double Hc=(2*area/c);
+
+        printf("\nHeight(a): %.*lf", n, Ha);
+        printf("\nHeight(b): %.*lf", n, Hb);
         printf("\nHeight(c): %.*lf", n, Hc);
 
         double Ma=(sqrt(2*pow(b,2)+2*pow(c,2)-pow(a,2)))/2;
-        printf("\nMedian(a): %.*lf", n, Ma);
-
         double Mb=(sqrt(2*pow(a,2)+2*pow(c,2)-pow(b,2))/2);
-        printf("\nMedian(b): %.*lf", n, Mb);
-
         double Mc=(sqrt(2*pow(a,2)+2*pow(b,2)-pow(c,2))/2);
+
+        printf("\nMedian(a): %.*lf", n, Ma);
+        printf("\nMedian(b): %.*lf", n, Mb);
         printf("\nMedian(c): %.*lf", n, Mc);
 
         double Ba=(2*sqrt(b*c*p*(p-a)))/(b+c);
-        printf("\nBisector(a): %.*lf", n, Ba);
-
         double Bb=(2*sqrt(a*c*p*(p-b)))/(a+c);
-        printf("\nBisector(b): %.*lf", n, Bb);
-
         double Bc=(2*sqrt(a*b*p*(p-c)))/(a+b);
+
+        printf("\nBisector(a): %.*lf", n, Ba);
+        printf("\nBisector(b): %.*lf", n, Bb);
         printf("\nBisector(c): %.*lf", n, Bc);
 
         printf("\nWould you like to exit? (y/n): ");
