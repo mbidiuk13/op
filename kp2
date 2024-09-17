@@ -12,16 +12,16 @@ int main()
         double a=0, b=0, c=0; //довжини сторін трикутника
         int n=0; //кількість знаків після коми для виведення результатів
         int valid_input = 0; //змінна для перевірки коректності введених значень
-        while (!valid_input) //цикл, що буде повторюватися, доки умова !valid_input буде істинною (тобто доки valid_input дорівнює 0)
+        while (!valid_input) //введення сторін відбувається в циклі, доки користувач не введе коректні значення
 
         {
-            printf("\nEnter the value of the side a (from 0,001 to 1000):");
-            scanf("%lf", &a);
-            if (a < 0.001 || a > 1000)
+            printf("\nEnter the value of the side a (from 0,001 to 1000):"); //введення сторони а
+            scanf("%lf", &a); //зчитування змінної
+            if (a < 0.001 || a > 1000) //валідація змінної
 
             {
                 printf("Invalid input, try again\n");
-                fflush(stdin);
+                fflush(stdin); //очищення буферу вводу
                 continue;
             }
 
@@ -43,14 +43,14 @@ int main()
                 continue;
             }
 
-            if (((a+b)<c) || ((a+c)<b) || ((b+c)<a))
+            if (((a+b)<c) || ((a+c)<b) || ((b+c)<a)) //перевірка чи існує такий трикутник
             {
                 printf("Invalid input, there is no such triangle, try again\n");
                 fflush(stdin);
                 continue;
             }
 
-            printf("Enter the number of decimal places from 1 to 12:");
+            printf("Enter the number of decimal places from 1 to 12:"); //запит на кількість знаків після коми
             scanf("%d", &n);
             if (n < 1 || n > 12)
             {
