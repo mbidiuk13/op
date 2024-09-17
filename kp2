@@ -4,7 +4,9 @@
 int main()
 {
     char exitChar;
+    printf("This program calculates perimeter, area, height, median and bisector of the sides of a triangle");
     do
+        
     {
         double a=0, b=0, c=0;
         int n=0;
@@ -12,27 +14,25 @@ int main()
         while (!valid_input)
 
         {
-            printf("This program calculates perimeter, area, height, median and bisector of the sides of a triangle");
-
-            printf("\nEnter the value of the side a: ");
+            printf("\nEnter the value of the side a (from 0,001 to 1000): ");
             scanf("%lf", &a);
-            if (a <= 0)
+            if (a < 0.001 || a > 1000)
             {
                 printf("Invalid input, try again\n");
                 continue;
             }
 
-            printf("Enter the value of the side b: ");
+            printf("Enter the value of the side b (from 0,001 to 1000): ");
             scanf("%lf", &b);
-            if (b <= 0)
+            if (b < 0.001 || b > 1000)
             {
                 printf("Invalid input, try again\n");
                 continue;
             }
 
-            printf("Enter the value of the side c: ");
+            printf("Enter the value of the side c (from 0,001 to 1000): ");
             scanf("%lf", &c);
-            if (c <= 0)
+            if (c < 0.001 || c > 1000)
             {
                 printf("Invalid input, try again\n");
                 continue;
@@ -44,9 +44,9 @@ int main()
                 continue;
             }
 
-            printf("Enter the number of decimal places from 0 to 12: ");
+            printf("Enter the number of decimal places from 1 to 12: ");
             scanf("%d", &n);
-            if (n < 0 || n > 12)
+            if (n < 1 || n > 12)
             {
                 printf("Invalid number of decimal places, try again\n");
                 continue;
