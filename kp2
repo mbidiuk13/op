@@ -58,7 +58,7 @@ int main()
                 fflush(stdin);
                 continue;
             }
-            valid_input ++;
+            valid_input ++; //якщо всі дані введені вірно, цикл закінчується
         }
 
         double perimeter=(a+b+c);
@@ -92,10 +92,10 @@ int main()
         printf("\nBisector(b): %.*lf", n, Bb);
         printf("\nBisector(c): %.*lf", n, Bc);
 
-        printf("\nWould you like to exit? (y/n): ");
+        printf("\nWould you like to exit? (y/n): "); //запит на вихід
         scanf(" %c", &exitChar);
 
     }
-    while (exitChar!= 'y' && exitChar != 'Y');
+    while (exitChar!= 'y' && exitChar != 'Y');//завершення програми
     return 0;
 }
