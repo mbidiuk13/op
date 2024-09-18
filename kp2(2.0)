@@ -1,0 +1,123 @@
+#include <stdio.h>
+#include <math.h>
+
+int main()
+
+{
+    double a=0, b=0, c=0; //довжини сторін трикутника
+    int valid_input=0;//змінна для перевірки коректності введених значень
+    unsigned n=0;//кількість знаків після коми для виведення результатів
+    char exitChar;//символ для перевірки, чи хоче користувач вийти
+    printf("This program calculates perimeter, area, height, median and bisector of the sides of a triangle.\n");
+
+    do
+    {
+        //валідація сторони a
+        do
+        {
+            printf("\nEnter the value of the side a (from 0,001 to 1000): ");
+            valid_input = scanf("%lf", &a);
+            if (valid_input != 1 || a < 0.001 || a > 1000)
+            {
+                printf("Invalid input, try again\n");
+                fflush(stdin);//очищення буферу вводу
+            }
+            else
+            {
+                break; //вихід з циклу, якщо дані введені вірно
+            }
+        }
+        while (valid_input != 1 || a < 0.001 || a > 1000);
+
+        //валідація сторони b
+        do
+        {
+            printf("Enter the value of the side b (from 0,001 to 1000): ");
+            valid_input = scanf("%lf", &b);
+            if (valid_input != 1 || b < 0.001 || b > 1000)
+            {
+                printf("Invalid input, try again\n");
+                fflush(stdin);
+            }
+            else
+            {
+                break;
+            }
+        }
+        while (valid_input != 1 || b < 0.001 || b > 1000);
+
+        //валідація сторони c
+        do {
+            printf("Enter the value of the side b (from 0,001 to 1000): ");
+            valid_input = scanf("%lf", &c);
+            if (valid_input != 1 || c < 0.001 || c > 1000)
+            {
+                printf("Invalid input, try again\n");
+                fflush(stdin);
+            }
+            else
+            {
+                break;
+            }
+        }
+        while (valid_input != 1 || c < 0.001 || c > 1000);
+
+        if (((a + b) <= c) || ((a + c) <= b) || ((b + c) <= a)) //перевірка чи існує такий трикутник
+        {
+            printf("Invalid input, there is no such triangle, try again\n");
+            continue; //перезапуск циклу
+        }
+
+        //валідація кількості знаків після коми
+        do {
+            printf("Enter the number of decimal places from 1 to 12: ");
+            valid_input = scanf("%u", &n);
+            if (valid_input != 1 || n < 1 || n > 12)
+            {
+                printf("Invalid number of decimal places, try again\n");
+                fflush(stdin);
+            }
+            else {
+                break;
+            }
+        }
+        while (valid_input != 1 || n < 1 || n > 12);
+
+        double perimeter=(a+b+c);
+        printf("\nPerimeter: %.*lf", n, perimeter);
+
+        double p=perimeter/2;
+        double area=sqrt(p*(p-a)*(p-b)*(p-c));
+        printf("\nArea: %.*lf", n, area);
+
+        double Ha=(2*area/a);
+        double Hb=(2*area/b);
+        double Hc=(2*area/c);
+
+        printf("\nHeight(a): %.*lf", n, Ha);
+        printf("\nHeight(b): %.*lf", n, Hb);
+        printf("\nHeight(c): %.*lf", n, Hc);
+
+        double Ma=(sqrt(2*pow(b,2)+2*pow(c,2)-pow(a,2)))/2;
+        double Mb=(sqrt(2*pow(a,2)+2*pow(c,2)-pow(b,2))/2);
+        double Mc=(sqrt(2*pow(a,2)+2*pow(b,2)-pow(c,2))/2);
+
+        printf("\nMedian(a): %.*lf", n, Ma);
+        printf("\nMedian(b): %.*lf", n, Mb);
+        printf("\nMedian(c): %.*lf", n, Mc);
+
+        double Ba=(2*sqrt(b*c*p*(p-a)))/(b+c);
+        double Bb=(2*sqrt(a*c*p*(p-b)))/(a+c);
+        double Bc=(2*sqrt(a*b*p*(p-c)))/(a+b);
+
+        printf("\nBisector(a): %.*lf", n, Ba);
+        printf("\nBisector(b): %.*lf", n, Bb);
+        printf("\nBisector(c): %.*lf", n, Bc);
+
+        printf("\nWould you like to exit? (y/n): "); //запит на вихід
+        scanf(" %c", &exitChar);
+
+    }
+    while (exitChar!= 'y' && exitChar != 'Y');//завершення програми
+    return 0;
+}
