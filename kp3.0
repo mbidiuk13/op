@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <math.h>
+
+//функція для запиту і валідації сторони трикутника
+double getValidSide(const char *sideName) {
+    double side = 0;
+    int valid_input = 0;
+    int is_valid = 0;
+
+    do {
+        printf("\nEnter the value of the side %s (from 0.001 to 1000): ", sideName);
+        valid_input = scanf("%lf", &side);
+        is_valid = (valid_input == 1 && side >= 0.001 && side <= 1000);
+        if (!is_valid) {
+            printf("Invalid input, try again\n");
+            fflush(stdin); // Очищення буферу вводу
+        }
+    } while (!is_valid);
+    return side;
+}
+
+int main() {
+    double a=0, b=0, c=0; //довжини сторін трикутника
+    int valid_input=0;//змінна для перевірки коректності введених значень
+    unsigned n=0;//кількість знаків після коми для виведення результатів
+    char exitChar = 'e';//символ для перевірки, чи хоче користувач вийти
+    printf("This program calculates perimeter, area, height, median and bisector of a triangle based on its sides.\n");
+
+    do {
+        //отримання і валідація сторін трикутника
+        a = getValidSide("a");
+        b = getValidSide("b");
+        c = getValidSide("c");
+
+        //перевірка чи існує такий трикутник
+        if ((a + b <= c) || (a + c <= b) || (b + c <= a)) {
+            printf("Invalid input, there is no such triangle, try again\n");
+            continue; //перезапуск циклу
+        }
+
+        //валідація кількості знаків після коми
+        do {
+            printf("Enter the number of decimal places from 1 to 12: ");
+            valid_input = scanf("%u", &n);
+            if (valid_input != 1 || n < 1 || n > 12) {
+                printf("Invalid number of decimal places, try again\n");
+                fflush(stdin);
+            }
+            else {
+                break;
+            }
+        } while (valid_input != 1 || n < 1 || n > 12);
+
+        double perimeter=(a+b+c);
+        printf("\nPerimeter: %.*e", n, perimeter);
+
+        double p=perimeter/2.0;
+        double area=sqrt(p*(p-a)*(p-b)*(p-c));
+        printf("\nArea: %.*e", n, area);
+
+        double Ha=(2.0*area/a);
+        double Hb=(2.0*area/b);
+        double Hc=(2.0*area/c);
+
+        printf("\nHeight(a): %.*e", n, Ha);
+        printf("\nHeight(b): %.*e", n, Hb);
+        printf("\nHeight(c): %.*e", n, Hc);
+
+        double Ma=(sqrt(2.0*pow(b,2)+2.0*pow(c,2)-pow(a,2))/2.0);
+        double Mb=(sqrt(2.0*pow(a,2)+2.0*pow(c,2)-pow(b,2))/2.0);
+        double Mc=(sqrt(2.0*pow(a,2)+2.0*pow(b,2)-pow(c,2))/2.0);
+
+        printf("\nMedian(a): %.*e", n, Ma);
+        printf("\nMedian(b): %.*e", n, Mb);
+        printf("\nMedian(c): %.*e", n, Mc);
+
+        double Ba=(2.0*sqrt(b*c*p*(p-a)))/(b+c);
+        double Bb=(2.0*sqrt(a*c*p*(p-b)))/(a+c);
+        double Bc=(2.0*sqrt(a*b*p*(p-c)))/(a+b);
+
+        printf("\nBisector(a): %.*e", n, Ba);
+        printf("\nBisector(b): %.*e", n, Bb);
+        printf("\nBisector(c): %.*e", n, Bc);
+
+        printf("\nPress 'y' to exit, or any other key to continue: ");
+        getchar(); //очистка буфера після попереднього вводу
+        exitChar = getchar(); //зчитування символу для виходу
+    } while (exitChar != 'y' && exitChar != 'Y'); //завершення програми
+    return 0;
+}
