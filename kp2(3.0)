@@ -13,9 +13,10 @@ double getValidSide(const char *sideName) {
         is_valid = (valid_input == 1 && side >= 0.001 && side <= 1000);
         if (!is_valid) {
             printf("Invalid input, try again\n");
-            fflush(stdin); // Очищення буферу вводу
+            fflush(stdin); //oчищення буферу вводу
         }
     } while (!is_valid);
+    fflush(stdin);
     return side;
 }
 
@@ -40,51 +41,51 @@ int main() {
 
         //валідація кількості знаків після коми
         do {
-            printf("Enter the number of decimal places from 1 to 12: ");
+            printf("Enter the number of decimal places from 1 to 14: ");
             valid_input = scanf("%u", &n);
-            if (valid_input != 1 || n < 1 || n > 12) {
+            if (valid_input != 1 || n < 1 || n > 14) {
                 printf("Invalid number of decimal places, try again\n");
                 fflush(stdin);
             }
             else {
                 break;
             }
-        } while (valid_input != 1 || n < 1 || n > 12);
+        } while (valid_input != 1 || n < 1 || n > 14);
+        fflush(stdin);
 
         double perimeter=(a+b+c);
-        printf("\nPerimeter: %.*e", n, perimeter);
-
         double p=perimeter/2.0;
         double area=sqrt(p*(p-a)*(p-b)*(p-c));
-        printf("\nArea: %.*e", n, area);
-
         double Ha=(2.0*area/a);
         double Hb=(2.0*area/b);
         double Hc=(2.0*area/c);
-
-        printf("\nHeight(a): %.*e", n, Ha);
-        printf("\nHeight(b): %.*e", n, Hb);
-        printf("\nHeight(c): %.*e", n, Hc);
-
         double Ma=(sqrt(2.0*pow(b,2)+2.0*pow(c,2)-pow(a,2))/2.0);
         double Mb=(sqrt(2.0*pow(a,2)+2.0*pow(c,2)-pow(b,2))/2.0);
         double Mc=(sqrt(2.0*pow(a,2)+2.0*pow(b,2)-pow(c,2))/2.0);
-
-        printf("\nMedian(a): %.*e", n, Ma);
-        printf("\nMedian(b): %.*e", n, Mb);
-        printf("\nMedian(c): %.*e", n, Mc);
-
         double Ba=(2.0*sqrt(b*c*p*(p-a)))/(b+c);
         double Bb=(2.0*sqrt(a*c*p*(p-b)))/(a+c);
         double Bc=(2.0*sqrt(a*b*p*(p-c)))/(a+b);
 
-        printf("\nBisector(a): %.*e", n, Ba);
-        printf("\nBisector(b): %.*e", n, Bb);
-        printf("\nBisector(c): %.*e", n, Bc);
+        printf("\nPerimeter: %.*lf (%.14e)", n, perimeter, perimeter);
+        printf("\nArea: %.*lf (%.14e)", n, area, area);
+        printf("\nHeight(a): %.*lf (%.14e)", n, Ha, Ha);
+        printf("\nHeight(b): %.*lf (%.14e)", n, Hb, Hb);
+        printf("\nHeight(c): %.*lf (%.14e)", n, Hc, Hc);
+        printf("\nMedian(a): %.*lf (%.14e)", n, Ma, Ma);
+        printf("\nMedian(b): %.*lf (%.14e)", n, Mb, Mb);
+        printf("\nMedian(c): %.*lf (%.14e)", n, Mc, Mc);
+        printf("\nBisector(a): %.*lf (%.14e)", n, Ba, Ba);
+        printf("\nBisector(b): %.*lf (%.14e)", n, Bb, Bb);
+        printf("\nBisector(c): %.*lf (%.14e)", n, Bc, Bc);
 
         printf("\nPress 'y' to exit, or any other key to continue: ");
-        getchar(); //очистка буфера після попереднього вводу
-        exitChar = getchar(); //зчитування символу для виходу
-    } while (exitChar != 'y' && exitChar != 'Y'); //завершення програми
+        fflush(stdin);
+        exitChar = getchar();
+
+        //очищення буфера, щоб запобігти некоректному вводу
+        while(getchar() != '\n');
+
+    } while (exitChar != 'y' && exitChar != 'Y');
+
     return 0;
 }
