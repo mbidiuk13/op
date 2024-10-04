@@ -26,7 +26,7 @@ int main() {
     printf("This program calculates perimeter, area, heights, medians and bisectors of a triangle based on its sides.\n");
 
     do {
-        // отримання і валідація сторін трикутника
+        // отримання сторін трикутника
         a = getValidSide("a");
         b = getValidSide("b");
         c = getValidSide("c");
@@ -49,18 +49,18 @@ int main() {
         } while (valid_input != 1 || n < 1 || n > 14);
 
         // обчислення характеристик трикутника
-        double perimeter = (a + b + c);
+        double perimeter = a + b + c;
         double p = perimeter / 2.0;
         double area = sqrt(p * (p - a) * (p - b) * (p - c));
-        double Ha = (2.0 * area / a);
-        double Hb = (2.0 * area / b);
-        double Hc = (2.0 * area / c);
-        double Ma = (sqrt(2.0 * pow(b, 2) + 2.0 * pow(c, 2) - pow(a, 2)) / 2.0);
-        double Mb = (sqrt(2.0 * pow(a, 2) + 2.0 * pow(c, 2) - pow(b, 2)) / 2.0);
-        double Mc = (sqrt(2.0 * pow(a, 2) + 2.0 * pow(b, 2) - pow(c, 2)) / 2.0);
-        double Ba = (2.0 * sqrt(b * c * p * (p - a))) / (b + c);
-        double Bb = (2.0 * sqrt(a * c * p * (p - b))) / (a + c);
-        double Bc = (2.0 * sqrt(a * b * p * (p - c))) / (a + b);
+        double Ha = 2.0 * area / a;
+        double Hb = 2.0 * area / b;
+        double Hc = 2.0 * area / c;
+        double Ma = sqrt(2.0 * pow(b, 2.0) + 2.0 * pow(c, 2.0) - pow(a, 2.0)) / 2.0;
+        double Mb = sqrt(2.0 * pow(a, 2.0) + 2.0 * pow(c, 2.0) - pow(b, 2.0)) / 2.0;
+        double Mc = sqrt(2.0 * pow(a, 2.0) + 2.0 * pow(b, 2.0) - pow(c, 2.0)) / 2.0;
+        double Ba = 2.0 * sqrt(b * c * p * (p - a)) / (b + c);
+        double Bb = 2.0 * sqrt(a * c * p * (p - b)) / (a + c);
+        double Bc = 2.0 * sqrt(a * b * p * (p - c)) / (a + b);
 
         // вивід результатів
         printf("\nPerimeter: %.*lf (%.14e)", n, perimeter, perimeter);
